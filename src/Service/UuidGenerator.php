@@ -2,27 +2,21 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Id\AbstractIdGenerator;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
-class UuidGenerator extends AbstractIdGenerator
+class UuidGenerator
 {
-    public function __construct(
-        private MyRandomStringGenerator $stringGenerator,
-        private int $maxRetry = 1,
-        private int $length = 11,
-        private string $chars = '0123456789abcdefghijklmnopqrstuvwxyz'
-    )
+    public function __construct()
     {
     }
 
-    public function generate(EntityManager $em, $entity)
+    public function generate($stringGenerator, ServiceEntityRepository $repository, $field, $maxRetry, $length, $chars)
     {
         $attempt = 0;
 
-        while ($attempt < $this->maxRetry) {
-            $string = $this->stringGenerator->generate($this->length, $this->chars);
-            $item = $em->find(get_class($entity), $string);
+        while ($attempt < $maxRetry) {
+            $string = $stringGenerator->generate($length, $chars);
+            $item = $repository->findOneBy([$field => $string]);
 
             if (!$item) {
                 return $string;

@@ -28,10 +28,10 @@ $ symfony console make:migration
 $ symfony console doctrine:migrations:migrate
 ```
 
-Configure the generator
+Configure the orderNumberGenerator
 
 ```yaml
-    App\Service\UuidGenerator:
+    App\Service\OrderNumberGenerator:
         arguments:
             $maxRetry: 6
             $length: 6
