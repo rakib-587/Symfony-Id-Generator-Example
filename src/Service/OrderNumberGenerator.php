@@ -2,14 +2,16 @@
 
 namespace App\Service;
 
+use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Id\AbstractIdGenerator;
 
-class OrderNumberGenerator extends AbstractIdGenerator
+class OrderNumberGenerator
 {
     public function __construct(
-        private MyRandomStringGenerator $stringGenerator,
         private UuidGenerator $uuidGenerator,
+        private MyRandomStringGenerator $stringGenerator,
+        private OrderRepository $orderRepository,
         private int $maxRetry = 1,
         private int $length = 11,
         private string $chars = '0123456789abcdefghijklmnopqrstuvwxyz'
@@ -17,13 +19,11 @@ class OrderNumberGenerator extends AbstractIdGenerator
     {
     }
 
-    public function generate(EntityManager $em, $entity)
+    public function generate()
     {
-        $repository = $em->getRepository(get_class($entity));
-        
         return $this->uuidGenerator->generate(
             $this->stringGenerator,
-            $repository,
+            $this->orderRepository,
             'orderNumber',
             $this->maxRetry,
             $this->length,

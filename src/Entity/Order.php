@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
-use App\Service\OrderNumberGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -17,8 +16,6 @@ class Order
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\GeneratedValue(strategy: "CUSTOM")]
-    #[ORM\CustomIdGenerator(class: OrderNumberGenerator::class)]
     #[ORM\Column(length: 255)]
     private ?string $orderNumber = null;
 

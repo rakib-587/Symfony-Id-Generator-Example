@@ -10,7 +10,14 @@ class UuidGenerator
     {
     }
 
-    public function generate($stringGenerator, ServiceEntityRepository $repository, $field, $maxRetry, $length, $chars)
+    public function generate(
+        $stringGenerator,
+        ServiceEntityRepository $repository,
+        $field,
+        $maxRetry,
+        $length,
+        $chars
+    )
     {
         $attempt = 0;
 
