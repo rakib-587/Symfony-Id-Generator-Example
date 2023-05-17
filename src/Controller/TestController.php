@@ -20,8 +20,8 @@ class TestController extends AbstractController
         ]);
     }
 
-    #[Route('/generate-order', name: 'app_generate_order')]
-    public function generateOrder(EntityManagerInterface $entityManager): Response
+    #[Route('/generate-orders', name: 'app_generate_order')]
+    public function generateOrders(EntityManagerInterface $entityManager): Response
     {
         $order = new Order();
         $entityManager->persist($order);
