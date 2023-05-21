@@ -12,6 +12,7 @@ class UniqueHashGenerator2 implements UniqueHashGeneratorInterface
             throw new \Exception('Out of range');
         }
 
+        //Here GCD(1000000, 700001) = 1, So generated numbers will be unique.
         $newNumber = ($number * 700001) % 1000000;
 
         $string = sprintf('%06d', $newNumber);
