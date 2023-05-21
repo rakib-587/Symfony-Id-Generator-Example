@@ -3,8 +3,6 @@
 namespace App\Service;
 
 use App\Repository\OrderRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Id\AbstractIdGenerator;
 
 class OrderNumberGenerator
 {
