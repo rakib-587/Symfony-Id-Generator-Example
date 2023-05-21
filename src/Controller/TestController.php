@@ -37,7 +37,7 @@ class TestController extends AbstractController
         $orders = [];
 
         for ($i = 1; $i <= 900000; $i++) {
-            $uniqueNumber = $generator->generate($i);
+            $uniqueNumber = $generator->generate($i, 6);
 
             if (isset($orders[$uniqueNumber])) {
                 dd( $i . ' has collided with ' . $orders[$uniqueNumber]);

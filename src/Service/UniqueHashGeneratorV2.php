@@ -15,15 +15,16 @@ class UniqueHashGeneratorV2 implements UniqueHashGeneratorInterface
         }
 
         $newNumber = $number + 10 ** ($length - 1) - 1;
+        $string = (string)$newNumber;
 
-        //Here GCD(1000000, 700001) = 1, So generated numbers will be unique.
-        $newNumber = ($newNumber * 700001) % 1000000;
-
-        $string = sprintf('%06d', $newNumber);
         $result = '';
+        $total = 0;
 
-        for ($i = 0; $i < 6; $i++) {
-            $result .= ($this->digits[$string[$i]] + ($i ** 2)) % 10;
+        for ($i = $length; $i > 0; $i--) {
+            $total += (int)$string[$i - 1] + ($i ** 2);
+            $char = $i === 1 ? $this->digits[$total % 9] : $this->digits[$total % 10];
+
+            $result = $char . $result;
         }
 
         return $result;
