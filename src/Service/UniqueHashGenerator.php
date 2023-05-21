@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-class UniqueNumberGenerator
+class UniqueHashGenerator
 {
     private $digits = [4, 8, 1, 5, 6, 3, 2, 7, 9, 0];
 
@@ -12,7 +12,9 @@ class UniqueNumberGenerator
             throw new \Exception('Out of range');
         }
 
-        $string = sprintf('%06d', $number);
+        $newNumber = ($number * 700001) % 1000000;
+
+        $string = sprintf('%06d', $newNumber);
         $result = '';
 
         for ($i = 0; $i < 6; $i++) {
