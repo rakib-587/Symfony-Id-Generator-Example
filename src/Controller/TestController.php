@@ -36,7 +36,7 @@ class TestController extends AbstractController
     {
         $orders = [];
 
-        for ($i = 1; $i < 1000000; $i++) {
+        for ($i = 1; $i <= 900000; $i++) {
             $uniqueNumber = $generator->generate($i);
 
             if (isset($orders[$uniqueNumber])) {

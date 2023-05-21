@@ -30,4 +30,4 @@ services:
             $chars: '0123456789'
 
     App\Service\OrderNumberGeneratorInterface: '@App\Service\OrderNumberGenerator4'
-    App\Service\UniqueHashGeneratorInterface: '@App\Service\UniqueHashGenerator'
+    App\Service\UniqueHashGeneratorInterface: '@App\Service\UniqueHashGenerator3'
