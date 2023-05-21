@@ -4,5 +4,5 @@ namespace App\Service;
 
 interface UniqueHashGeneratorInterface
 {
-    public function generate(int $number) : string;
+    public function generate(int $number, int $length) : string;
 }

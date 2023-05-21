@@ -7,25 +7,16 @@ use App\Repository\OrderRepository;
 class OrderNumberGenerator implements OrderNumberGeneratorInterface
 {
     public function __construct(
-        private UuidGenerator $uuidGenerator,
-        private MyRandomStringGenerator $stringGenerator,
         private OrderRepository $orderRepository,
-        private int $maxRetry = 1,
-        private int $length = 11,
-        private string $chars = '0123456789abcdefghijklmnopqrstuvwxyz'
+        private UniqueHashGeneratorInterface $generator
     )
     {
     }
 
-    public function generate() : string
+    public function generate(): string
     {
-        return $this->uuidGenerator->generate(
-            $this->stringGenerator,
-            $this->orderRepository,
-            'orderNumber',
-            $this->maxRetry,
-            $this->length,
-            $this->chars
-        );
+        $lastOrder = $this->orderRepository->findOneBy([], ['id' => 'DESC']);
+        $number = $lastOrder ? $lastOrder->getId() + 1 : 1;
+        return $this->generator->generate($number, 6);
     }
 }
