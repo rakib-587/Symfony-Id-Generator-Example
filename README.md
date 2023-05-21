@@ -38,6 +38,12 @@ Configure the orderNumberGenerator1
             $chars: '0123456789'
 ```
 
+To use a generator, specify the generator in services.yaml file,
+
+```yaml
+App\Service\OrderNumberGeneratorInterface: '@App\Service\OrderNumberGenerator4'
+```
+
 # Run
 
 ### Using Symfony CLI
