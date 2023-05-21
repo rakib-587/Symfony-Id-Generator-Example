@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Repository\OrderRepository;
-use App\Service\UniqueHashGenerator;
+use App\Service\UniqueHashGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +32,7 @@ class TestController extends AbstractController
     }
 
     #[Route('/test', name: 'app_test')]
-    public function test(UniqueHashGenerator $generator): Response
+    public function test(UniqueHashGeneratorInterface $generator): Response
     {
         $orders = [];
 

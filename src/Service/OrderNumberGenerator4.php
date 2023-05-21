@@ -8,7 +8,7 @@ class OrderNumberGenerator4 implements OrderNumberGeneratorInterface
 {
     public function __construct(
         private OrderRepository $orderRepository,
-        private UniqueHashGenerator $generator
+        private UniqueHashGeneratorInterface $generator
     )
     {
     }

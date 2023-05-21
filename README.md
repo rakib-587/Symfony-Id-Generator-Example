@@ -28,20 +28,21 @@ $ symfony console make:migration
 $ symfony console doctrine:migrations:migrate
 ```
 
-Configure the orderNumberGenerator1
+Configure the orderNumberGenerator in services.yaml file
 
 ```yaml
-    App\Service\OrderNumberGenerator1:
+    App\Service\OrderNumberGenerator:
         arguments:
             $maxRetry: 6
             $length: 6
             $chars: '0123456789'
 ```
 
-To use a generator, specify the generator in services.yaml file,
+Specify the generators in services.yaml file
 
 ```yaml
 App\Service\OrderNumberGeneratorInterface: '@App\Service\OrderNumberGenerator4'
+App\Service\UniqueHashGenerator: '@App\Service\UniqueHashGenerator'
 ```
 
 # Run

@@ -2,11 +2,9 @@
 
 namespace App\Service;
 
-class UniqueHashGenerator
+class UniqueHashGenerator implements UniqueHashGeneratorInterface
 {
-    private $digits = [4, 8, 1, 5, 6, 3, 2, 7, 9, 0];
-
-    public function generate($number) : string
+    public function generate(int $number) : string
     {
         if ($number < 0 || $number >= 1000000) {
             throw new \Exception('Out of range');
@@ -14,13 +12,6 @@ class UniqueHashGenerator
 
         $newNumber = ($number * 700001) % 1000000;
 
-        $string = sprintf('%06d', $newNumber);
-        $result = '';
-
-        for ($i = 0; $i < 6; $i++) {
-            $result .= ($this->digits[$string[$i]] + ($i ** 2)) % 10;
-        }
-
-        return $result;
+        return sprintf('%06d', $newNumber);
     }
 }

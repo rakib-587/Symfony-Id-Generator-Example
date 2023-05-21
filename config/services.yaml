@@ -23,10 +23,11 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\OrderNumberGenerator1:
+    App\Service\OrderNumberGenerator:
         arguments:
             $maxRetry: 6
             $length: 6
             $chars: '0123456789'
 
     App\Service\OrderNumberGeneratorInterface: '@App\Service\OrderNumberGenerator4'
+    App\Service\UniqueHashGeneratorInterface: '@App\Service\UniqueHashGenerator'

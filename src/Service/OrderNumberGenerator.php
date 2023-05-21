@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Repository\OrderRepository;
 
-class OrderNumberGenerator1 implements OrderNumberGeneratorInterface
+class OrderNumberGenerator implements OrderNumberGeneratorInterface
 {
     public function __construct(
         private UuidGenerator $uuidGenerator,
