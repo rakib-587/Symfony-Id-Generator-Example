@@ -10,7 +10,7 @@ class UniqueHashGenerator3 implements UniqueHashGeneratorInterface
             throw new \Exception('Out of range');
         }
 
-        $newNumber = $number + 999999;
+        $newNumber = $number + 99999;
         return (string)$newNumber;
     }
 }
